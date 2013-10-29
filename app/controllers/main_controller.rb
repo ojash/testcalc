@@ -5,7 +5,7 @@ class MainController < ApplicationController
 		#binding.pry
 		if equation_validate(params[:q])
 			p_eqn = to_postfix(params[:q])
-			redirect_to main_index_path,:notice=> p_eqn 
+			redirect_to main_index_path,:notice=> p_eqn.join 
 		else
 			redirect_to main_index_path,:notice=>"invalid character"
 		end
@@ -34,21 +34,18 @@ class MainController < ApplicationController
 				if p_stack.empty?
 					p_stack << eqn_char
 				else
-					flag = 0
-					binding.pry
-					while (flag == 0 or !p_stack.empty?)
+					flag = true
+					#binding.pry
+					while (flag and !p_stack.empty?)
 						if o_presedence(eqn_char, p_stack.last)
 							p_stack << eqn_char
-							flag = 1 #it means the characer has been pushed in stack
+							flag = false #it means the characer has been pushed in stack
 						else
-							if p_stack.empty?
-								flag = 2 #it meand the charcter needs to be pushed in stack
-							else
-								p_string << p_stack.pop
-							end
+							p_string << p_stack.pop
 						end
 					end
-					if flag ==2
+					if flag
+						#binding.pry
 						p_stack << eqn_char
 					end
 				end
@@ -59,15 +56,18 @@ class MainController < ApplicationController
 		if p_stack.empty?
 			p_string
 		else
+			temp_p_stack = p_stack.dup
 			p_stack.each do |stack_char|
-				p_string << p_stack.pop
+				#binding.pry
+				p_string << temp_p_stack.pop
+				#binding.pry
 			end
 			p_string
 		end
 	end
 	def o_presedence(eqn_char, stack_char)
-		prece_tebl = ["-","+","/","*"]
-		if (prece_tebl.index(eqn_char) > prece_tebl.index(stack_char))
+		prece_tebl = ["-","+","","/","*"]
+		if (prece_tebl.index(eqn_char) - prece_tebl.index(stack_char)) > 1
 			true
 		else
 			false
