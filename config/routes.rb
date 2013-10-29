@@ -1,4 +1,9 @@
 RspecTestingApp::Application.routes.draw do
+
+  root 'main#index'
+  resources :main do
+    post 'calculate' ,on: :new    
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

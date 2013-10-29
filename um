@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ojash/rpro/rspec_testing_app/spec/helpers/main_helper_spec.rb @ line 17 :
+
+    [1;34m12[0m: [0;34m# end[0m
+    [1;34m13[0m: describe [1;34m[4mMainHelper[0m [1;31mdo[0m
+    [1;34m14[0m:   [0;34m#pending "add some examples to (or delete) #{__FILE__}"[0m
+    [1;34m15[0m:   describe [32m[1;32m"[0m[32m#add[1;32m"[0m[32m[0m [1;31mdo[0m
+    [1;34m16[0m:     it [32m[1;32m"[0m[32madds the two mumbers[1;32m"[0m[32m[0m [1;31mdo[0m
+ => [1;34m17[0m:     	binding.pry
+    [1;34m18[0m:       [0;34m#main = Main.index[0m
+    [1;34m19[0m:       [0;34m# helper is an instance of ActionView::Base configured with the[0m
+    [1;34m20[0m:       [0;34m# EventsHelper and all of Rails' built-in helpers[0m
+    [1;34m21[0m:       expect(helper.add).to eql [32m[1;32m"[0m[32m5[1;32m"[0m[32m[0m
+    [1;34m22[0m:     [1;31mend[0m
+
