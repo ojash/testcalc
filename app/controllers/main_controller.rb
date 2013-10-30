@@ -13,7 +13,16 @@ class MainController < ApplicationController
 
 	private
 	def equation_validate(eqn)
-		eqn.match(/[^\d\/\-\/*()+%]/) ? false :true
+		#eqn.match(/[^\d\/\-\/*()+%]/) ? false :true
+		if eqn.match(/[^\d\/\-\/*()+%]/)
+			false
+		elsif eqn.first.match(/[^\d]/) or eqn.last.match(/[^\d]/) 
+			false
+		elsif eqn.match(/[^\d][+{1,}\-{1,}\*{1,}\/{1,}]/)
+			false
+		else
+			true
+		end
 	end
 	def to_postfix(eqn)
 		eqn = eqn.split("")
